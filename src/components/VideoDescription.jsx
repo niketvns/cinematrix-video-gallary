@@ -1,23 +1,39 @@
-import React from 'react';
-import {AiTwotoneDislike, AiTwotoneLike} from "react-icons/ai";
+import React, {useState} from 'react';
+import {AiFillHeart} from "react-icons/ai";
 import {SlActionRedo} from "react-icons/sl";
 import {BsFillStarFill} from "react-icons/bs";
+import {CgPlayListAdd} from 'react-icons/cg'
+import CommentSection from "./CommentSection";
+import {useGlobleAuth, useGlobleLiked} from "../contexts";
+import {SaveModel} from "./index";
 
 const VideoDescription = ({videoDetails}) => {
+    const {addToLike, likedVideos} = useGlobleLiked()
+    const [isSaveModel, setIsSaveModel] = useState(false)
+
+    const isInLiked = (id) => {
+        return likedVideos.find(video => video._id === id)
+    }
+
     return (
         <div className="video-description md:ml-2">
             <h1 className={'video-title font-bold text-xl pl-2'}>{videoDetails?.title}</h1>
-            <div className="video-buttons flex gap-8 m-3 text-2xl">
-                <div className="like">
-                    <AiTwotoneLike
-                        className={`${videoDetails?.liked ? 'text-blue-400' : 'text-[rgba(255,255,255,0.5)]'} cursor-pointer`}/>
+            <div className="video-buttons flex gap-8 pl-2 m-3 text-2xl">
+                <div
+                    className="like flex gap-1 items-center justify-center cursor-pointer text-[#ffffff80] backdrop-sepia-0 bg-white/5 hover:bg-white/20 transition p-2 rounded-lg" onClick={()=>addToLike(videoDetails)}>
+                    <AiFillHeart
+                        className={`${localStorage.getItem('encodedToken') && isInLiked(videoDetails?._id) ? 'text-red-500' : 'text-[#ffffff80]'}`}/>
+                    <span className={'text-sm'}>Liked</span>
                 </div>
-                <div className="dislike">
-                    <AiTwotoneDislike
-                        className={`${videoDetails?.disliked ? 'text-blue-500' : 'text-[rgba(255,255,255,0.5)]'} cursor-pointer`}/>
+                <div
+                    className="share flex gap-1 items-center justify-center cursor-pointer text-[#ffffff80] backdrop-sepia-0 bg-white/5 hover:bg-white/20 transition p-2 rounded-lg">
+                    <SlActionRedo/>
+                    <span className={'text-sm'}>Share</span>
                 </div>
-                <div className="share">
-                    <SlActionRedo className={'cursor-pointer text-[rgba(255,255,255,0.5)]'}/>
+                <div
+                    className="save flex gap-1 items-center justify-center cursor-pointer text-[#ffffff80] backdrop-sepia-0 bg-white/5 hover:bg-white/20 transition p-2 rounded-lg" onClick={()=>setIsSaveModel(true)}>
+                    <CgPlayListAdd/>
+                    <span className={'text-sm'}>Save</span>
                 </div>
             </div>
             <div
@@ -41,6 +57,11 @@ const VideoDescription = ({videoDetails}) => {
                     <span className={'font-bold'}>Director: </span>{videoDetails?.director}
                 </div>
             </div>
+            <CommentSection videoDetails={videoDetails}/>
+            {
+                isSaveModel &&
+                <SaveModel setIsSaveModel={setIsSaveModel} video={videoDetails}/>
+            }
         </div>
     );
 };

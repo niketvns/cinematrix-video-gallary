@@ -1,4 +1,4 @@
-import {createContext, useContext, useState, useEffect, useReducer} from "react";
+import {createContext, useContext, useEffect, useReducer} from "react";
 import axios from "axios";
 import {initialValue, reducerFunction} from "./Reducer/reducer";
 
@@ -6,7 +6,6 @@ const videosContext = createContext()
 
 const VideosProvider = ({children}) =>{
     const [state, dispatch] = useReducer(reducerFunction, initialValue);
-    // const [videos, setVideos] = useState([])
 
     const fetchVideos = async () =>{
         try{

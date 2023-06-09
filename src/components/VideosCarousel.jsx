@@ -7,10 +7,6 @@ import {useGlobleVideos} from "../contexts";
 const VideosCarousel = () => {
     const {videos, isProductLoading} = useGlobleVideos()
 
-    useEffect(()=>{
-        console.log('hii')
-    })
-
     const responsive = {
         superLargeDesktop: {
             // the naming can be any, depends on you.
@@ -56,14 +52,15 @@ const VideosCarousel = () => {
                 <h1 className={'ml-4 text-2xl font-bold'}>Trending on Cinematrix</h1>
                 <Carousel
                     responsive={responsive}
-                    centerMode={true}
+                    // centerMode={true}
                     ssr={true}
+                    swipeable
                 >
                     {
                         isProductLoading ?
                             <p>Loading...</p> :
                             videos.map(video => (
-                                <VideoCard key={video.key} video={video}/>
+                                <VideoCard key={video._id} video={video}/>
                             ))
                     }
                 </Carousel>
