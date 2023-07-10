@@ -217,5 +217,19 @@ export const videos = [
         language: 'Hindi',
         duration: '2h',
         director: 'Zack Snyder'
+    },
+    {
+        _id: uuid(),
+        title: "Avengers: Age of Ultron",
+        thumbnail: 'https://i.postimg.cc/g2mD5bJm/avengers-age-of-ultron.jpg',
+        videoLink: "https://www.youtube-nocookie.com/embed/9Wly6N7dSkM",
+        description: "When Tony Stark and Bruce Banner try to jump-start a dormant peacekeeping program called Ultron, things go horribly wrong and it's up to Earth's mightiest heroes to stop the villainous Ultron from enacting his terrible plan.",
+        dateOfPost: 'Apr 13, 2015',
+        rating: '7.3',
+        genre: 'Science Fiction',
+        comments: [{ id: uuid(), user: 'rahul', message: 'very interesting movie, i loved it.'}],
+        language: 'Hindi',
+        duration: '2h 21m',
+        director: 'Joss Whedon'
     }
 ];

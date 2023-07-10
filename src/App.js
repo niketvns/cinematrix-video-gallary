@@ -2,7 +2,18 @@ import "./App.css";
 import Mockman from "mockman-js";
 import {Routes, Route} from 'react-router-dom'
 import {Footer, Navbar, RequireAuth} from "./components";
-import {Error, History, Home, Likes, Login, Playlists, Signup, VideoDetails, WatchLater} from "./pages";
+import {
+    Error,
+    History,
+    Home,
+    Likes,
+    Login,
+    PlaylistDetails,
+    Playlists,
+    Signup,
+    VideoDetails,
+    WatchLater
+} from "./pages";
 
 function App() {
   return (
@@ -15,6 +26,7 @@ function App() {
                 <Route path={'/user/watchlater'} element={<WatchLater/>}/>
                 <Route path={'/user/history'} element={<History/>}/>
                 <Route path={'/user/playlists'} element={<Playlists/>}/>
+                <Route path={'/user/playlist/:id'} element={<PlaylistDetails/>}/>
                 <Route path={'/testing/mockman'} element={<Mockman/>}/>
             </Route>
             <Route path={'/authentication/login'} element={<Login/>}/>

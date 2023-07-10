@@ -1,7 +1,7 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {useGlobleVideos} from "../contexts";
 import {useNavigate} from "react-router-dom";
-import saveModel from "./SaveModel";
+import {AiFillStar} from 'react-icons/ai'
 
 const SearchModel = ({setIsSearch}) => {
     const [searchInput, setSearchInput] = useState('')
@@ -50,11 +50,11 @@ const SearchModel = ({setIsSearch}) => {
                                              setIsSearch(false)
                                          }}>
                                         <div className="thumbnail w-16">
-                                            <img src={video?.thumbnail} alt="thumbnail" className={'w-full'}/>
+                                            <img src={video?.thumbnail} alt="thumbnail" className={'w-full h-full'}/>
                                         </div>
                                         <div className="details">
-                                            <h2>{video?.title}</h2>
-                                            <p>Rating - {video?.rating}/10</p>
+                                            <h2 className={'line-clamp-2'}>{video?.title}</h2>
+                                            <p className={'flex items-center'}> <AiFillStar className={'text-yellow-600'}/> {video?.rating}/10</p>
                                         </div>
                                     </div>
                                 )) :

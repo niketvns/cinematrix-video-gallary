@@ -51,7 +51,7 @@ const Navbar = () => {
                         </div>
                         <li className={'cursor-pointer'}>
                             <NavLink to={'/'} className={'flex items-center gap-2'} onClick={() => setIsMenu(false)}>
-                                <span><GoHome className={'text-xl'}/></span> Home
+                                <span><GoHome className={'text-xl text-white'}/></span> Home
                             </NavLink>
                         </li>
                         <li className={'cursor-pointer'}>

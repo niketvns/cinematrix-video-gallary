@@ -1,11 +1,10 @@
-import React, {useEffect, useReducer} from 'react';
+import React from 'react';
 import {VideoCard} from "./index";
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import {useGlobleVideos} from "../contexts";
 
-const VideosCarousel = () => {
-    const {videos, isProductLoading} = useGlobleVideos()
+const VideosCarousel = ({heading, videos}) => {
 
     const responsive = {
         superLargeDesktop: {
@@ -49,7 +48,7 @@ const VideosCarousel = () => {
     return (
         <>
             <section className={'my-4'}>
-                <h1 className={'ml-4 text-2xl font-bold'}>Trending on Cinematrix</h1>
+                <h1 className={'ml-4 text-2xl font-bold'}>{heading}</h1>
                 <Carousel
                     responsive={responsive}
                     // centerMode={true}
@@ -57,8 +56,6 @@ const VideosCarousel = () => {
                     swipeable
                 >
                     {
-                        isProductLoading ?
-                            <p>Loading...</p> :
                             videos.map(video => (
                                 <VideoCard key={video._id} video={video}/>
                             ))

@@ -1,9 +1,11 @@
 import React, {useEffect} from 'react';
 import {SpinnerLoader} from "../../components";
 import {useGlobleWatchLater} from "../../contexts";
+import {useNavigate} from "react-router-dom";
 
 const WatchLater = () => {
     const {isWatchlaterLoading , watchlaterVideos, removeFromWatchlater} = useGlobleWatchLater()
+    const navigate = useNavigate()
 
     useEffect(()=>{
         window.scrollTo({top: 0, left: 0});
@@ -27,7 +29,7 @@ const WatchLater = () => {
                                 {
                                     watchlaterVideos.map(video => (
                                         <div key={video._id} className={'ind-video flex justify-start items-start gap-4 min-h-[220px] backdrop-sepia-0 bg-white/5 md:mr-4'}>
-                                            <div className="thumbnail max-w-[150px]">
+                                            <div className="thumbnail max-w-[150px] cursor-pointer" onClick={()=>navigate(`/video/watch/${video._id}`)}>
                                                 <img src={video?.thumbnail} alt="thumbnail" className={'rounded-lg'}/>
                                             </div>
                                             <div className="contains h-[220px] flex flex-col justify-between flex-1 py-4">

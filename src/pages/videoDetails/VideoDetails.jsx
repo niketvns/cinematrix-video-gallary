@@ -2,13 +2,14 @@ import React, {useEffect, useState} from 'react';
 import {useParams} from "react-router-dom";
 import {SpinnerLoader, SuggestedVideos, VideoDescription, VideoPlayer, VideosCarousel} from "../../components";
 import axios from "axios";
-import {useGlobleHistory} from "../../contexts";
+import {useGlobleHistory, useGlobleVideos} from "../../contexts";
 
 const VideoDetails = () => {
     const [videoDetails, setVideoDetails] = useState(null)
     const [isLoading, setIsLoading] = useState(true)
     const {id} = useParams()
     const {addToHistory} = useGlobleHistory()
+    const {videos} = useGlobleVideos()
 
     const fetchVideoData = async () => {
         setIsLoading(true)
@@ -39,7 +40,7 @@ const VideoDetails = () => {
                     <VideoDescription videoDetails={videoDetails}/>
                 </div>
                 <div className="suggested-videos-mobile lg:hidden">
-                    <VideosCarousel/>
+                    <VideosCarousel heading={"Suggested Videos"} videos={videos}/>
                 </div>
                 <div className="suggested-videos-desktop hidden flex-1 rounded-lg xl:p-4 lg:flex flex-col lg:gap-4 items-center">
                     <h3 className={'text-2xl'}>Suggested Videos</h3>
